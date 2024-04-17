@@ -7,23 +7,26 @@ import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 
 
+function logout(){
+  localStorage.clear()
+  return <Navigate to = "/login"/>
+}
+
+function login(){
+  localStorage.clear();
+  return <Navigate to="/register"/>
+
+}
+
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
-          <ProtectedRoute>
-            <Home/>
-          </ProtectedRoute>
-        }
-        />
-      <Route path="/login" element={<Login/>}
-      />
-      <Route path="/register" element={<Register/>}/>
-      <Route path="*" element={<NotFound/>}>
-      </Route>
-
-
+        <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
   
